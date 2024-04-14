@@ -5,3 +5,22 @@
 # Docker Secrets, Environment Files
 **/secret.*
 **/.env
+
+# Terraform files
+*.tfstate
+*.tfstate.backup
+*.auto.tfvars
+*.tfvars
+*.auto.tfvars
+credentials.auto.tfvars
+.terraform/
+.terraform.*
+
+# Possible rsa keys
+id_rsa
+id_rsa.pub
+
+
+# Packer config files
+user-data.mine
+
