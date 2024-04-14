@@ -37,8 +37,8 @@ source "proxmox" "ubuntu-server-jammy" {
     
     # VM General Settings
     node = "david"
-    vm_id = "100"
-    vm_name = "ubuntu-server-jammy"
+    vm_id = "101"
+    vm_name = "githun-runner-jammy"
     template_description = "Ubuntu Server jammy Image"
 
     # VM OS Settings
@@ -111,7 +111,7 @@ source "proxmox" "ubuntu-server-jammy" {
     #ssh_private_key_file = "./ssh/id_rsa"
 
     # Raise the timeout, when installation takes longer
-    ssh_timeout = "20m"
+    ssh_timeout = "30m"
 }
 
 # Build Definition to create the VM Template
@@ -136,6 +136,18 @@ build {
         ]
     }
 
+    # Copy software installation scripts - non root
+    provisioner "file" {
+        source = "provision_nonroot.sh"
+        destination = "/tmp/provision_nonroot.sh"
+    }
+
+    # Copy software installation scripts - root
+    provisioner "file" {
+        source = "provision_root.sh"
+        destination = "/tmp/provision_root.sh"
+    }
+
     # Provisioning the VM Template for Cloud-Init Integration in Proxmox #2
     provisioner "file" {
         source = "files/99-pve.cfg"
@@ -155,8 +167,8 @@ build {
             "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null",
             "sudo apt-get -y update",
             "sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin",
-            "sudo bash ./provision_root.sh",
-            "bash ./provision_nonroot.sh"
+            "sudo bash /tmp/provision_root.sh",
+            "bash /tmp/provision_nonroot.sh"
         ]
     }
 }
