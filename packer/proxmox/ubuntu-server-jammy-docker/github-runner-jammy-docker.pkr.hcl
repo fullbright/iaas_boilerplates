@@ -148,6 +148,12 @@ build {
         destination = "/tmp/provision_root.sh"
     }
 
+    # Copy the script to install the github runner software 
+    provisioner "file" {
+        source = "install_gh_runner.sh"
+        destination = "/tmp/install_gh_runner.sh"
+    }
+
     # Provisioning the VM Template for Cloud-Init Integration in Proxmox #2
     provisioner "file" {
         source = "files/99-pve.cfg"
@@ -168,7 +174,8 @@ build {
             "sudo apt-get -y update",
             "sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin",
             "sudo bash /tmp/provision_root.sh",
-            "bash /tmp/provision_nonroot.sh"
+            "bash /tmp/provision_nonroot.sh",
+            "bash /tmp/install_gh_runner.sh"
         ]
     }
 }
