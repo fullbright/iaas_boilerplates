@@ -4,8 +4,11 @@
   hosts: default
   become: true
 
+  roles:
+    - geerlingguy.packer
+
   tasks:
-    - name: install Packer on host
+    - name: install vim
       package:
-        name: 'packer'
+        name: 'vim'
         state: present
