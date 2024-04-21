@@ -136,6 +136,12 @@ build {
         ]
     }
 
+
+    # Install software and configuration with ansible 
+    provisioner "ansible" {
+      playbook_file = "./playbook.yml"
+    }
+
     # Copy software installation scripts - non root
     provisioner "file" {
         source = "provision_nonroot.sh"
