@@ -1,0 +1,11 @@
+---
+# playbook.yml
+- name: 'Provision Image'
+  hosts: default
+  become: true
+
+  tasks:
+    - name: install Packer on host
+      package:
+        name: 'packer'
+        state: present
