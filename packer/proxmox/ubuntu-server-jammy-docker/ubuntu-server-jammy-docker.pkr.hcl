@@ -16,11 +16,24 @@ variable "proxmox_api_token_secret" {
     sensitive = true
 }
 
+variable "packer_http_server_url" {
+  type = string
+}
+
+variable "packer_http_server_port" {
+  type = number
+}
+
 packer {
   required_plugins {
     proxmox = {
       version = ">= 1.1.7"
       source  = "github.com/hashicorp/proxmox"
+    }
+
+    ansible = {
+      version = ">= 1.1.1"
+      source  = "github.com/hashicorp/ansible"
     }
   }
 }
@@ -37,19 +50,19 @@ source "proxmox" "ubuntu-server-jammy" {
     
     # VM General Settings
     node = "david"
-    vm_id = "100"
+    vm_id = "102"
     vm_name = "ubuntu-server-jammy"
     template_description = "Ubuntu Server jammy Image"
 
     # VM OS Settings
     # (Option 1) Local ISO File
-    # iso_file = "local:iso/ubuntu-22.04-live-server-amd64.iso"
+    iso_file = "local:iso/ubuntu-22.04.4-live-server-amd64.iso"
     # - or -
     # (Option 2) Download ISO
-    iso_url = "https://releases.ubuntu.com/22.04/ubuntu-22.04.4-live-server-amd64.iso"
-    iso_checksum = "45f873de9f8cb637345d6e66a583762730bbea30277ef7b32c9c3bd6700a32b2"
-    iso_storage_pool = "local"
-    unmount_iso = true
+    # iso_url = "https://releases.ubuntu.com/22.04/ubuntu-22.04.4-live-server-amd64.iso"
+    # iso_checksum = "45f873de9f8cb637345d6e66a583762730bbea30277ef7b32c9c3bd6700a32b2"
+    # iso_storage_pool = "local"
+    # unmount_iso = true
 
     # VM System Settings
     qemu_agent = true
@@ -62,7 +75,7 @@ source "proxmox" "ubuntu-server-jammy" {
         #format = "qcow2"
         format = "raw"
         storage_pool = "local-lvm"
-        storage_pool_type = "lvm"
+        #storage_pool_type = "lvm"
         type = "virtio"
     }
 
@@ -93,25 +106,26 @@ source "proxmox" "ubuntu-server-jammy" {
         "<f10><wait>"
     ]
     boot = "c"
-    boot_wait = "5s"
+    boot_wait = "15s"
 
     # PACKER Autoinstall Settings
     http_directory = "http" 
     # (Optional) Bind IP Address and Port
-    http_bind_address = "192.168.1.3"
-    http_port_min = 8802
-    http_port_max = 8802
+    http_bind_address = "${var.packer_http_server_url}" # "192.168.1.3"
+    http_port_min = var.packer_http_server_port # 8802
+    http_port_max = var.packer_http_server_port # 8802
 
     ssh_username = "fullbright"
 
     # (Option 1) Add your Password here
-    ssh_password = "ubuntu"
+    # ssh_password = "ubuntu"
     # - or -
     # (Option 2) Add your Private SSH KEY file here
-    #ssh_private_key_file = "./ssh/id_rsa"
+    # ssh_private_key_file = "./ssh/id_rsa"
+    ssh_private_key_file = "./rsa_osmose"
 
     # Raise the timeout, when installation takes longer
-    ssh_timeout = "20m"
+    ssh_timeout = "30m"
 }
 
 # Build Definition to create the VM Template
@@ -142,6 +156,19 @@ build {
         destination = "/tmp/99-pve.cfg"
     }
 
+    # Copy the script to install the github runner software 
+    provisioner "file" {
+         source = "install_gh_runner.sh"
+         destination = "/tmp/install_gh_runner.sh"
+    }
+
+
+    # Install software and configuration with ansible 
+    provisioner "ansible" {
+        playbook_file = "./playbook.yml"
+    }
+
+
     # Provisioning the VM Template for Cloud-Init Integration in Proxmox #3
     provisioner "shell" {
         inline = [ "sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg" ]
@@ -156,7 +183,8 @@ build {
             "sudo apt-get -y update",
             "sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin",
             "sudo bash ./provision_root.sh",
-            "bash ./provision_nonroot.sh"
+            "bash ./provision_nonroot.sh",
+            "bash /tmp/install_gh_runner.sh"
         ]
     }
 }

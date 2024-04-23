@@ -3,7 +3,7 @@ autoinstall:
   version: 1
   locale: en_US
   keyboard:
-    layout: de
+    layout: fr
   ssh:
     install-server: true
     allow-pw: true
@@ -20,14 +20,16 @@ autoinstall:
       size: 0
   user-data:
     package_upgrade: false
-    timezone: Europe/Berlin
+    timezone: Europe/Paris
     users:
-      - name: your-user-name
+      - name: fullbright
         groups: [adm, sudo]
         lock-passwd: false
         sudo: ALL=(ALL) NOPASSWD:ALL
         shell: /bin/bash
-        # passwd: your-password
+        # Put the result of `mkpasswd --method=SHA-512 --rounds=4096`
+        # passwd: $6$rounds=4096$e0HbLH1H.QpsZWy7$I7NgZX.qKtqa1M.kiW52/mwdfUI8MGv7/YKsmkmzro2n1KD7HNUX8G3YpOp/QDNY2sQSlukHb.LgJeBsog/V31
         # - or -
-        # ssh_authorized_keys:
-        #   - your-ssh-key
+        ssh_authorized_keys:
+           - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBxSDBQc2Uje4897I5+7P/syHlFREx9sVcUE5tF8w1MCtsodXw43m0mRzTktS1HxFDXXlhNZ97v4QwxRNhJphiI1kcmH2yRIrSqCucJIA0eW4V3hixiWA/AOpwr9m1sWb1oMFsehEuMqIzXFi0246y/TJa4b1/ek60F/3dJQOwpANa4thuNUEOFIwH9VjuvQLo8G97o6AlZFByZntcn4v0jq2xMBK9OiefG8Fpg5MjTU2Fute05f7IwogAtUxcdzYRf10VBNR/QTqAIJ6dA5IKHp9grOLJF442vFGLr/HWk74vtd/79gJfTMKnpzojAq+bEJq77xd5tJR3fDyoNQMHqRjKQEESeQzP1EgB/91BfErLRVypORjuIVUlYe/Y1QRiY8l0iRmPom6M12BfYcoQpiRhYLtsK33h6DoI+vIpk+hOUfxdOXLDZF1sNswvtCU1Iovh/wVys1bTimMOC6tHkmlHXBr8qYXfHWZTAGa1QbC7/MZU3LiKqlPpAqBe6LVTh9PS/4bWgxfJkFCBeb7Fn/+ivH5kKmRffQIde/YqNYRXyAcVTuFLjNsBvB88UILL2bM8Rub7G2DuykzJyZ57zox3n32NRK9NoUu6qg9MZY7OVFGsidH9OP9ipwRVLQXT33vYlOm5tnQxh4UnUunOdL6w6J2rFeUIFS73hyxBcQ== root@docker-desktop
+
