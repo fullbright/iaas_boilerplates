@@ -1,0 +1,10 @@
+proxmox_api_url = "https://192.168.1.8:8006/api2/json"  # Your Proxmox IP Address
+proxmox_api_token_id = "root@pam!iaas_packer"  # API Token ID
+proxmox_api_token_secret = "ddaf17da-bd19-411f-8ce9-7dbaac6d6aae"
+#packer_http_server_url = "192.168.1.147"
+#packer_http_server_url = "172.17.0.2"
+packer_http_server_url = "0.0.0.0"
+packer_http_server_port = 8803
+#packer_http_server_port = 8802
+packer_username = "fullbright"
+packer_userpwd = "ubuntu"
