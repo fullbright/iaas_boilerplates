@@ -5,19 +5,19 @@ terraform {
     required_providers {
         civo = {
             source = "civo/civo"
-            version = "~> 1.0.13"
+            version = "~> 1.1.0"
         }
         helm = {
             source = "hashicorp/helm"
-            version = "2.13.1"
+            version = "2.16.1"
         }
         kubernetes = {
             source = "hashicorp/kubernetes"
-            version = "2.29.0"     
+            version = "2.34.0"     
         }
         kubectl = {
             source = "gavinbunney/kubectl"
-            version = "1.14.0"
+            version = "1.16.0"
         }
         cloudflare = {
             source = "cloudflare/cloudflare"
