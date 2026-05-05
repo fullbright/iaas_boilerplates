@@ -1,0 +1,17 @@
+---
+- hosts: gh_runners
+  #become: yes
+  #tasks:
+  #  - name: install net-tools
+  #    apt:
+  #      name: net-tools
+  roles:
+    - prometheus.prometheus.node_exporter
+    - prometheus.prometheus.cadvisor
+
+- hosts: docker_hosts
+  roles:
+    - prometheus.prometheus.node_exporter
+    - prometheus.prometheus.cadvisor
+  #vars:
+  #  ansible_python_interpreter: /usr/bin/python3.6

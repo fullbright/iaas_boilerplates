@@ -1,0 +1,7 @@
+network:
+  version: 2
+  renderer: networkd # NetworkManager
+  ethernets:
+    ens18:
+      link-local: []
+      dhcp4: true

@@ -1,0 +1,215 @@
+{
+  "version": 4,
+  "terraform_version": "1.8.0",
+  "serial": 1,
+  "lineage": "cf1c23d4-3924-f577-9702-06c3ac46fd43",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "proxmox_vm_qemu",
+      "name": "gh-run-causting",
+      "provider": "provider[\"registry.terraform.io/telmate/proxmox\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "additional_wait": 5,
+            "agent": 1,
+            "args": "",
+            "automatic_reboot": true,
+            "balloon": 0,
+            "bios": "seabios",
+            "boot": "order=virtio0;ide2;net0",
+            "bootdisk": "",
+            "bridge": null,
+            "ci_wait": null,
+            "cicustom": "",
+            "cipassword": "",
+            "ciuser": "",
+            "clone": "ubuntu-server-jammy",
+            "clone_wait": 10,
+            "cloudinit_cdrom_storage": "",
+            "cores": 1,
+            "cpu": "host",
+            "default_ipv4_address": null,
+            "define_connection_info": true,
+            "desc": "A github runner VM for causting github org",
+            "disk": [],
+            "disk_gb": null,
+            "disks": [
+              {
+                "ide": [],
+                "sata": [],
+                "scsi": [],
+                "virtio": [
+                  {
+                    "virtio0": [
+                      {
+                        "cdrom": [],
+                        "disk": [
+                          {
+                            "asyncio": "",
+                            "backup": true,
+                            "cache": "",
+                            "discard": false,
+                            "format": "raw",
+                            "id": 0,
+                            "iops_r_burst": 0,
+                            "iops_r_burst_length": 0,
+                            "iops_r_concurrent": 0,
+                            "iops_wr_burst": 0,
+                            "iops_wr_burst_length": 0,
+                            "iops_wr_concurrent": 0,
+                            "iothread": false,
+                            "linked_disk_id": -1,
+                            "mbps_r_burst": 0,
+                            "mbps_r_concurrent": 0,
+                            "mbps_wr_burst": 0,
+                            "mbps_wr_concurrent": 0,
+                            "readonly": false,
+                            "replicate": false,
+                            "serial": "",
+                            "size": 15,
+                            "storage": "vm_data",
+                            "wwn": ""
+                          }
+                        ],
+                        "passthrough": []
+                      }
+                    ],
+                    "virtio1": [],
+                    "virtio10": [],
+                    "virtio11": [],
+                    "virtio12": [],
+                    "virtio13": [],
+                    "virtio14": [],
+                    "virtio15": [],
+                    "virtio2": [],
+                    "virtio3": [],
+                    "virtio4": [],
+                    "virtio5": [],
+                    "virtio6": [],
+                    "virtio7": [],
+                    "virtio8": [],
+                    "virtio9": []
+                  }
+                ]
+              }
+            ],
+            "efidisk": [],
+            "force_create": false,
+            "force_recreate_on_change_of": null,
+            "full_clone": true,
+            "guest_agent_ready_timeout": 100,
+            "hagroup": "",
+            "hastate": "",
+            "hostpci": [],
+            "hotplug": "network,disk,usb",
+            "id": "david/qemu/503",
+            "ipconfig0": "",
+            "ipconfig1": "",
+            "ipconfig10": "",
+            "ipconfig11": "",
+            "ipconfig12": "",
+            "ipconfig13": "",
+            "ipconfig14": "",
+            "ipconfig15": "",
+            "ipconfig2": "",
+            "ipconfig3": "",
+            "ipconfig4": "",
+            "ipconfig5": "",
+            "ipconfig6": "",
+            "ipconfig7": "",
+            "ipconfig8": "",
+            "ipconfig9": "",
+            "iso": "",
+            "kvm": true,
+            "linked_vmid": 0,
+            "mac": null,
+            "machine": "",
+            "memory": 2048,
+            "name": "gh-runner-bs",
+            "nameserver": "",
+            "network": [
+              {
+                "bridge": "vmbr0",
+                "firewall": false,
+                "link_down": false,
+                "macaddr": "46:93:24:FA:5F:24",
+                "model": "virtio",
+                "mtu": 0,
+                "queues": 0,
+                "rate": 0,
+                "tag": -1
+              }
+            ],
+            "nic": null,
+            "numa": false,
+            "onboot": true,
+            "oncreate": false,
+            "os_network_config": null,
+            "os_type": "cloud-init",
+            "pool": "",
+            "preprovision": true,
+            "pxe": null,
+            "qemu_os": "other",
+            "reboot_required": false,
+            "scsihw": "lsi",
+            "searchdomain": "",
+            "serial": [],
+            "smbios": [
+              {
+                "family": "",
+                "manufacturer": "",
+                "product": "",
+                "serial": "",
+                "sku": "",
+                "uuid": "28550043-ff7e-4aa1-a3c7-507e4715c109",
+                "version": ""
+              }
+            ],
+            "sockets": 1,
+            "ssh_forward_ip": null,
+            "ssh_host": null,
+            "ssh_port": null,
+            "ssh_private_key": null,
+            "ssh_user": null,
+            "sshkeys": "    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEfn3v6gAGRm19uG8cdPKZb++i0f+uNzfInF6HA2tpTFWkwtMIHZ19VIK3j5nq20q/xQ9NL9PLkv+KI+iNhrr3IGU6TowtmquHVkJM/YImk0AnLY1RGo5m1lg2Y2a8/aGev/fdeOLGJj6HdbzezxPxFjkD2VSFDk6BUhxLTPrZEa5XjpcKkrO+ZmjjgFF/xevY8us4ILhuQtSDCuMYFaRhroTE/Z4WCd9mZhZmp9LKlM4G4zp1Y/0axdyYiTZrU1e9kKuvZxBG6j+SiDZTfwYMv10yB7HuIiAdw8SSqP1rwfCSrgmXDE0L/GPaV/B+Tt0G3rp3SSpOllyFOmkK/8no90QUDz9WTgjKYtczt300TdBVJlnEZOcL2YqeDeB3bDCyZr6K0rxiDaObEzJ5wvGo966ykmNND8UtkmcS0HlvOAW72aZ+QzYpkDgyYzi+2HEUGSnZktCdwdXMq8zucb6xhLBri/qi40wrI5UP85s9jxBduQEOr/vHTAhY87YZUP8= kekeli@openmediavault\n    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBxSDBQc2Uje4897I5+7P/syHlFREx9sVcUE5tF8w1MCtsodXw43m0mRzTktS1HxFDXXlhNZ97v4QwxRNhJphiI1kcmH2yRIrSqCucJIA0eW4V3hixiWA/AOpwr9m1sWb1oMFsehEuMqIzXFi0246y/TJa4b1/ek60F/3dJQOwpANa4thuNUEOFIwH9VjuvQLo8G97o6AlZFByZntcn4v0jq2xMBK9OiefG8Fpg5MjTU2Fute05f7IwogAtUxcdzYRf10VBNR/QTqAIJ6dA5IKHp9grOLJF442vFGLr/HWk74vtd/79gJfTMKnpzojAq+bEJq77xd5tJR3fDyoNQMHqRjKQEESeQzP1EgB/91BfErLRVypORjuIVUlYe/Y1QRiY8l0iRmPom6M12BfYcoQpiRhYLtsK33h6DoI+vIpk+hOUfxdOXLDZF1sNswvtCU1Iovh/wVys1bTimMOC6tHkmlHXBr8qYXfHWZTAGa1QbC7/MZU3LiKqlPpAqBe6LVTh9PS/4bWgxfJkFCBeb7Fn/+ivH5kKmRffQIde/YqNYRXyAcVTuFLjNsBvB88UILL2bM8Rub7G2DuykzJyZ57zox3n32NRK9NoUu6qg9MZY7OVFGsidH9OP9ipwRVLQXT33vYlOm5tnQxh4UnUunOdL6w6J2rFeUIFS73hyxBcQ== root@docker-desktop\n\n",
+            "startup": "",
+            "storage": null,
+            "storage_type": null,
+            "tablet": true,
+            "tags": "",
+            "target_node": "david",
+            "target_nodes": null,
+            "timeouts": null,
+            "unused_disk": [],
+            "usb": [],
+            "vcpus": 0,
+            "vga": [],
+            "vlan": -1,
+            "vm_state": "running",
+            "vmid": 503
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "cipassword"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "ssh_private_key"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWZhdWx0IjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

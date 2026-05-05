@@ -1,0 +1,4 @@
+---
+- hosts: ai_servers
+  roles:
+    - andrewrothstein.ollama
